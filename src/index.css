@@ -1,0 +1,44 @@
+@font-face{
+  font-family:IRANSans;
+  font-style:normal;
+  font-weight:700;
+  src:url(../public/fonts/IranSans/IRANSansWeb_Bold.f2cb5d5.eot);
+  src:url(../public/fonts/IranSans/IRANSansWeb_Bold.43a0ecf.woff2) format("woff2"),
+  url(../public/fonts/IranSans/IRANSansWeb_Bold.e4ed975.woff) format("woff"),
+  url(../public/fonts/IranSans/IRANSansWeb_Bold.ebec177.ttf) format("truetype")
+}
+@font-face{
+  font-family:IRANSans;
+  font-style:normal;
+  font-weight:400;
+  src:url(../public/fonts/IranSans/IRANSansWeb.d393186.eot);
+  src:url(../public/fonts/IranSans/IRANSansWeb.0b5055a.woff2) format("woff2"),
+  url(../public/fonts/IranSans/IRANSansWeb.66b5cb3.woff) format("woff"),
+  url(../public/fonts/IranSans/IRANSansWeb.c26a9eb.ttf) format("truetype")
+}
+html, body, #root, .app, .content{
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  text-align: right;
+  direction: rtl;
+  font-weight:normal;
+  font-size:1rem !important;
+  font-family: 'IRANSans',-apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial, serif;
+}
+.app{
+  display: flex;
+  position: relative;
+}
+::-webkit-scrollbar{
+  width: 10px;
+}
+::-webkit-scrollbar-track{
+  background: #e0e0e0;
+}
+::-webkit-scrollbar-thumb{
+  background: #888;
+}
+::-webkit-scrollbar-track:hover{
+  background: #555;
+}
