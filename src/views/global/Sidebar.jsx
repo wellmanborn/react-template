@@ -12,13 +12,14 @@ import {
 } from "@mui/icons-material";
 
 const Item = ({title, to, icon, selected, setSelected}) => {
-    return (<Link to={to}><MenuItem
+    return (<MenuItem
                 active={selected === title}
                 icon={icon}
                 onClick={() => setSelected(title)}
+                routerLink={<Link to={to} />}
             >
         {title}
-    </MenuItem></Link>);
+    </MenuItem>);
 }
 
 const Aside = () => {
@@ -62,6 +63,8 @@ const Aside = () => {
                     <Item title="Grid" icon={<GridOnOutlined />} to="/grid"
                           selected={selected} setSelected={setSelected} />
                     <Item title="Card" icon={<CardMembershipOutlined />} to="/card"
+                          selected={selected} setSelected={setSelected} />
+                    <Item title="Form" icon={<CardMembershipOutlined />} to="/form"
                           selected={selected} setSelected={setSelected} />
                 </Menu>
             </Box>

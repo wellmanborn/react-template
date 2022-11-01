@@ -21,7 +21,7 @@ export const tokens = (mode) => ({
             200: "#cbcfe7",
             300: "#9ca1c9",
             400: "#6b6ea8",
-            500: "#313472",
+            500: "#309a9c",
             600: "#262754",
             700: "#1d1d3a",
             750: "#191934",
@@ -158,6 +158,7 @@ export const themeSettings = (mode) => {
     const colors = tokens(mode);
 
     return {
+        direction: 'rtl',
         palette: {
             mode,
             ...(mode === "dark" ? {

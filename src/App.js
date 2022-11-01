@@ -9,7 +9,16 @@ import Page3 from "./views/page3/index"
 import {Route, Routes} from "react-router-dom";
 import Grid from "./views/grid";
 import MediaCard from "./views/card";
+import Form from "./views/form";
+import createCache from '@emotion/cache';
+import {prefixer} from 'stylis';
+import rtlPlugin from 'stylis-plugin-rtl';
+import { CacheProvider } from '@emotion/react';
 
+const cacheRtl = createCache({
+    key: 'muirtl',
+    stylisPlugins: [prefixer, rtlPlugin],
+});
 
 function App() {
 
@@ -17,23 +26,26 @@ function App() {
 
   return (
       <ColorModeContext.Provider value={colorMode}>
-          <ThemeProvider theme={theme}>
-              <CssBaseline />
-              <div className="app">
-                  <Aside></Aside>
-                  <main className="content">
-                      <Topbar></Topbar>
-                      <Routes>
-                          <Route path="/" element={<Dashboard />} />
-                          <Route path="/grid" element={<Grid />} />
-                          <Route path="/link1" element={<Page1 />} />
-                          <Route path="/link2" element={<Page2 />} />
-                          <Route path="/link3" element={<Page3 />} />
-                          <Route path="/card" element={<MediaCard />} />
-                      </Routes>
-                  </main>
-              </div>
-          </ThemeProvider>
+          <CacheProvider value={cacheRtl}>
+              <ThemeProvider theme={theme}>
+                  <CssBaseline />
+                  <div className="app">
+                      <Aside></Aside>
+                      <main className="content">
+                          <Topbar></Topbar>
+                          <Routes>
+                              <Route path="/" element={<Dashboard />} />
+                              <Route path="/grid" element={<Grid />} />
+                              <Route path="/form" element={<Form />} />
+                              <Route path="/link1" element={<Page1 />} />
+                              <Route path="/link2" element={<Page2 />} />
+                              <Route path="/link3" element={<Page3 />} />
+                              <Route path="/card" element={<MediaCard />} />
+                          </Routes>
+                      </main>
+                  </div>
+              </ThemeProvider>
+          </CacheProvider>
       </ColorModeContext.Provider>
 
   );

@@ -37,10 +37,6 @@ export default function MediaCard() {
                     {data.map(elem => (
                         <Grid item xs={12} sm={6} md={4} key={data.indexOf(elem)}>
                             <Card sx={{backgroundColor: colors.primary[800]}}>
-                                {/*<CardHeader
-                            title={`quarter : ${elem.quarter}`}
-                            subheader={`earnings : ${elem.earnings}`}
-                        />*/}
                                 <CardContent>
                                     <Typography variant="h4" sx={{ mt: 2, mb: 1 }} gutterBottom>
                                         Hello World
