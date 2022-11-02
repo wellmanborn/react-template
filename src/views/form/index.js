@@ -20,7 +20,9 @@ const initialValues = {
     saveAccount: ""
 }
 
-const Form = () => {
+const PaymentOrderForm = (props) => {
+
+    console.log(props)
 
     const theme = useTheme();
     const colors = tokens(theme.palette.mode)
@@ -37,9 +39,8 @@ const Form = () => {
         <Box m="20px">
             <Header title="Form" subtitle="Create account" />
             <Box
-                component="form"
                 sx={{
-                    '& .MuiTextField-root': { m: 1, width: '25ch' },
+                    '& .MuiTextField-root': { m: 1, width: '20vw' },
                 }}
                 backgroundColor={colors.primary[700]}
                 p={2}
@@ -75,6 +76,8 @@ const Form = () => {
                             error={!!touched.accountNumber && !!errors.accountNumber}
                             helperText={touched.accountNumber && errors.accountNumber}
                         />
+                    </Box>
+                    <Box>
                         <TextField
                             fullWidth={true}
                             variant="outlined"
@@ -121,4 +124,4 @@ const Form = () => {
     )
 }
 
-export default Form;
+export default PaymentOrderForm;

@@ -1,24 +1,27 @@
 import { useState } from 'react';
-import { Box, useTheme, IconButton, Typography } from "@mui/material";
+import { Box, useTheme, IconButton } from "@mui/material";
 import { tokens } from "../../theme";
-import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar } from 'react-pro-sidebar';
+import { Sidebar, Menu, MenuItem/*, SubMenu*/, useProSidebar } from 'react-pro-sidebar';
 import { Link } from "react-router-dom";
+import noorLogo from "../../assets/noor-logo.png";
 import {
     CardMembershipOutlined,
-    DashboardOutlined,
-    GridOnOutlined,
-    HomeOutlined,
+    // DashboardOutlined,
+    // GridOnOutlined,
+    // HomeOutlined, Image,
     MenuOutlined
 } from "@mui/icons-material";
+import {useTranslation} from "react-i18next";
 
 const Item = ({title, to, icon, selected, setSelected}) => {
+    const { t } = useTranslation();
     return (<MenuItem
                 active={selected === title}
                 icon={icon}
                 onClick={() => setSelected(title)}
                 routerLink={<Link to={to} />}
             >
-        {title}
+        {t(title)}
     </MenuItem>);
 }
 
@@ -27,7 +30,7 @@ const Aside = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode)
     const { collapseSidebar, collapsed } = useProSidebar();
-    const [selected, setSelected] = useState("Dashboard")
+    const [selected, setSelected] = useState("Accounts")
 
     return (<Box sx={{
         "& .sidebar-inner": { background: `${colors.primary[800]} !important` },
@@ -40,9 +43,9 @@ const Aside = () => {
     }} style={{ display: 'flex', height: '100%'}}>
         <Sidebar width="250px" rtl={true}>
             <Box display="flex" justifyContent="space-between"
-                 alignItems="center" mt="10px" mr="20px">
+                 alignItems="center" m="8px 20px">
                 {!collapsed && (
-                    <Typography variant="h4" color={colors.grey[100]}>Mahta</Typography>
+                    <img width="35px" src={noorLogo} alt="fireSpot"/>
                 )}
                 <IconButton onClick={() => collapseSidebar()}>
                     <MenuOutlined />
@@ -50,7 +53,9 @@ const Aside = () => {
             </Box>
             <Box>
                 <Menu>
-                    <SubMenu icon={<DashboardOutlined />} label="Submenu">
+                    <Item title="Accounts" icon={<CardMembershipOutlined />} to="/accounts"
+                          selected={selected} setSelected={setSelected} />
+                    {/*<SubMenu icon={<DashboardOutlined />} label="Submenu">
                         <Item title="Dashboard" icon="" to="/"
                               selected={selected} setSelected={setSelected} />
                         <Item title="Link 1" icon="" to="/link1"
@@ -62,10 +67,9 @@ const Aside = () => {
                           selected={selected} setSelected={setSelected} />
                     <Item title="Grid" icon={<GridOnOutlined />} to="/grid"
                           selected={selected} setSelected={setSelected} />
-                    <Item title="Card" icon={<CardMembershipOutlined />} to="/card"
-                          selected={selected} setSelected={setSelected} />
+
                     <Item title="Form" icon={<CardMembershipOutlined />} to="/form"
-                          selected={selected} setSelected={setSelected} />
+                          selected={selected} setSelected={setSelected} />*/}
                 </Menu>
             </Box>
         </Sidebar>

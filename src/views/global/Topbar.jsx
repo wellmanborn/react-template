@@ -8,19 +8,21 @@ import {NotificationsOutlined} from "@mui/icons-material";
 import {SettingsOutlined} from "@mui/icons-material";
 import {PersonOutlined} from "@mui/icons-material";
 import {Search} from "@mui/icons-material";
+import {useTranslation} from "react-i18next";
 
 const Topbar = () => {
 
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
-    const colorMode = useContext(ColorModeContext)
+    const colorMode = useContext(ColorModeContext);
+    const { t } = useTranslation();
 
     return (<Box backgroundColor={colors.primary[800]} display="flex" justifyContent="space-between" p={1}>
         <Box display="flex"
              backgroundColor={colors.primary[700]}
              borderRadius="3px"
         >
-            <InputBase sx={{ mr: 2, flex:1 }} placeholder="Search" />
+            <InputBase sx={{ pl: 2, flex:1 }} placeholder={t("Search")} />
             <IconButton type="button" sx={{p:1}}>
                 <Search sx={{ color: colors.orangeAccent[500] }} />
             </IconButton>
