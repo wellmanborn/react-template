@@ -6,5 +6,9 @@
   "All Active Accounts": "حساب های فعال کاربر",
   "Payment Order": "دستور پرداخت",
   "Bill": "صورتحساب",
-  "Search": "جستجو"
+  "Search": "جستجو",
+  "Price": "مبلغ",
+  "Tracking Number": "شناسه پرداخت",
+  "Reason": "بابت",
+  "Send": "ارسال"
 }

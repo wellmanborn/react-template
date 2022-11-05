@@ -2,14 +2,14 @@ import { useState } from 'react';
 import { Box, useTheme, IconButton } from "@mui/material";
 import { tokens } from "../../theme";
 import { Sidebar, Menu, MenuItem/*, SubMenu*/, useProSidebar } from 'react-pro-sidebar';
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import noorLogo from "../../assets/noor-logo.png";
 import {
     CardMembershipOutlined,
     // DashboardOutlined,
     // GridOnOutlined,
     // HomeOutlined, Image,
-    MenuOutlined
+    MenuOutlined,
 } from "@mui/icons-material";
 import {useTranslation} from "react-i18next";
 
@@ -70,6 +70,7 @@ const Aside = () => {
 
                     <Item title="Form" icon={<CardMembershipOutlined />} to="/form"
                           selected={selected} setSelected={setSelected} />*/}
+                    <Outlet />
                 </Menu>
             </Box>
         </Sidebar>

@@ -153,7 +153,6 @@ export const tokens = (mode) => ({
     })
 })
 
-
 export const themeSettings = (mode) => {
     const colors = tokens(mode);
 

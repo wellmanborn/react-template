@@ -10,6 +10,7 @@ import {AddOutlined, TrendingUpOutlined} from "@mui/icons-material";
 import Header from "../../components/Header";
 import {useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
+import {Link} from "react-router-dom";
 
 export default function MediaCard() {
 
@@ -78,10 +79,12 @@ export default function MediaCard() {
                                     </Typography>
                                 </CardContent>
                                 <CardActions sx={{ display: "flex", justifyContent: "space-between"}}>
-                                    <Button href="/account/view/10" variant="outlined" sx={{ p: 1, pr: 2, color: colors.orangeAccent[400] }}>
-                                        <AddOutlined sx={{ color: colors.blueAccent[400], mr: 1 }} />
-                                        { t("Payment Order") }
-                                    </Button>
+                                    <Link to={ "/account/view/" + elem.id }>
+                                        <Button variant="outlined" sx={{ p: 1, pr: 2, color: colors.orangeAccent[400] }}>
+                                            <AddOutlined sx={{ color: colors.blueAccent[400], mr: 1 }} />
+                                            { t("Payment Order") }
+                                        </Button>
+                                    </Link>
                                     <Button variant="outlined" sx={{ p: 1, pr: 2, color: colors.blueAccent[400] }}>
                                         <TrendingUpOutlined sx={{ color: colors.orangeAccent[400], mr: 1 }} />
                                         { t("Bill") }
