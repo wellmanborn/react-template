@@ -23,7 +23,7 @@ html, body, #root, .app, .content{
   text-align: right;
   direction: rtl;
   font-weight:normal;
-  font-size:1rem !important;
+  font-size:1.1rem !important;
   font-family: 'IRANSans',-apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial, serif;
 }
 .app{

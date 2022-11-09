@@ -14,6 +14,7 @@ import {prefixer} from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
 import { CacheProvider } from '@emotion/react';
 import PaymentOrderForm from "./views/form";
+import RequestTabs from "./views/request";
 
 const cacheRtl = createCache({
     key: 'muirtl',
@@ -43,6 +44,7 @@ function App() {
                                 <Route path="/link3" element={<Page3 />} />*/}
                                 <Route path="/accounts" element={<MediaCard />} />
                                 <Route path="/account/view/:id" element={<PaymentOrderForm />} />
+                                <Route path="/request/view/:id" element={<RequestTabs />} />
                             </Routes>
                         </main>
                     </div>

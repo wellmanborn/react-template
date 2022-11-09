@@ -31,22 +31,7 @@ const Grid = () => {
             <Box display="flex" justifyContent="space-between" alignItems="center">
                 <Header title="Grid" subtitle="List of teams" />
             </Box>
-            <Box m="0" height="75vh"
-                 sx={{
-                     "& .MuiDataGrid-columnHeaders": { backgroundColor: colors.blueAccent[500],
-                         minHeight: "35px !important",
-                         maxHeight: "45px !important"},
-                     "& .MuiButton-startIcon": { marginRight: "10px", marginLeft: "3px", color: colors.orangeAccent[400] },
-                     "& .MuiButton-text": {  color: colors.blueAccent[400] },
-                     "& .MuiDataGrid-columnSeparator": {  color: colors.blueAccent[500] },
-                     "& .MuiDataGrid-columnHeader": {  minHeight: "35px !important", maxHeight: "45px !important" },
-                     "& .MuiDataGrid-columnHeader:focus": {  outline: "none" },
-                     "& .MuiDataGrid-row": {  minHeight: "40px !important",
-                                              maxHeight: "50px !important" },
-                     "& .MuiDataGrid-cell": {  borderBottomColor: colors.primary[750],
-                                                minHeight: "40px !important",
-                                                maxHeight: "50px !important" },
-                    }}>
+            <Box m="0" height="75vh">
                 <DataGrid columns={columns} rows={rows} components={{ Toolbar: GridToolbar }} />
             </Box>
         </Box>

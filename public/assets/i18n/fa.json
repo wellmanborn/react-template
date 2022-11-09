@@ -10,5 +10,21 @@
   "Price": "مبلغ",
   "Tracking Number": "شناسه پرداخت",
   "Reason": "بابت",
-  "Send": "ارسال"
+  "Send": "ارسال",
+  "Upload": "آپلود",
+  "Label": "برچسب",
+  "Upload File": "آپلود فایل",
+  "Upload Attached File": "آپلود فایل ضمیمه",
+  "Description": "توضیحات",
+  "Create New Bill": "ایجاد صورتحساب جدید",
+  "View": "مشاهده",
+  "Wait for Sign": "در انتظار امضا",
+  "Ready to Payment": "آماده پرداخت",
+  "Finished": " پایان یافته",
+  "Requests": "درخواست ها",
+  "All Requests": "تمام درخواست ها",
+  "ID": "ردیف",
+  "To Account": "به حساب",
+  "Amount": "مبلغ",
+  "Date and Time": "زمان و تاریخ"
 }

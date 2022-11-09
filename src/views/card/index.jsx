@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {Box, Grid, useTheme} from "@mui/material";
 import {tokens} from "../../theme";
-import {AddOutlined, TrendingUpOutlined} from "@mui/icons-material";
+import {AddOutlined, TrendingUpOutlined, VisibilityOutlined} from "@mui/icons-material";
 import Header from "../../components/Header";
 import {useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
@@ -85,10 +85,18 @@ export default function MediaCard() {
                                             { t("Payment Order") }
                                         </Button>
                                     </Link>
-                                    <Button variant="outlined" sx={{ p: 1, pr: 2, color: colors.blueAccent[400] }}>
-                                        <TrendingUpOutlined sx={{ color: colors.orangeAccent[400], mr: 1 }} />
-                                        { t("Bill") }
-                                    </Button>
+                                    <Box>
+                                        <Link to={ "/request/view/" + elem.id }>
+                                            <Button variant="outlined" sx={{ p: 1, pr: 2, mr: 1, color: colors.blueAccent[400] }}>
+                                                <VisibilityOutlined sx={{ color: colors.orangeAccent[400], mr: 1 }} />
+                                                { t("View") }
+                                            </Button>
+                                        </Link>
+                                        <Button variant="outlined" sx={{ p: 1, pr: 2, color: colors.blueAccent[400] }}>
+                                            <TrendingUpOutlined sx={{ color: colors.orangeAccent[400], mr: 1 }} />
+                                            { t("Bill") }
+                                        </Button>
+                                    </Box>
                                 </CardActions>
                             </Card>
                         </Grid>
