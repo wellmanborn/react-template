@@ -26,5 +26,7 @@
   "ID": "ردیف",
   "To Account": "به حساب",
   "Amount": "مبلغ",
-  "Date and Time": "زمان و تاریخ"
+  "Date and Time": "زمان و تاریخ",
+  "Type": "نوع",
+  "To": "به"
 }

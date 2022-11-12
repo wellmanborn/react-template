@@ -3,14 +3,21 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import {useTheme} from "@mui/material";
+import {Grid, useTheme} from "@mui/material";
 import {tokens} from "../../theme";
 import {useTranslation} from "react-i18next";
 import Header from "../../components/Header";
-import { VisibilityOutlined} from "@mui/icons-material";
+import {AddOutlined, TrendingUpOutlined, VisibilityOutlined} from "@mui/icons-material";
 import {DataGrid, GridToolbar} from "@mui/x-data-grid";
 import Button from "@mui/material/Button";
 import {Link} from "react-router-dom";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import noorLogo from "../../assets/noor-logo.png";
+import {numberFormat} from "../../components/Functions";
+import {useEffect} from "react";
+import axios from "axios";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -31,7 +38,7 @@ function TabPanel(props: TabPanelProps) {
         >
             {value === index && (
                 <Box sx={{ pt: 3, px: 3, pb: 5, minHeight: "50vh" }}>
-                    <Typography>{children}</Typography>
+                    {children}
                 </Box>
             )}
         </div>
@@ -47,6 +54,34 @@ function a11yProps(index: number) {
 
 export default function RequestTabs() {
     const [value, setValue] = React.useState(0);
+    const [requests, setRequests] = React.useState([]);
+
+    useEffect(() => {
+        const url = "http://127.0.0.1:8000/api/waitForSign";
+
+        const fetchData = async () => {
+            try {
+                let data = {};
+                axios
+                    .post(url, data, {
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                    })
+                    .then((response) => {
+                        setRequests(response.data);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            } catch (error) {
+                console.log("error", error);
+            }
+        };
+
+        fetchData();
+
+    }, []);
 
     const theme = useTheme();
 
@@ -54,31 +89,7 @@ export default function RequestTabs() {
 
     const { t } = useTranslation();
 
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue);
-    };
-
-    const rows = [{"id":1,"to":"Nanci","amount":"Wasling","type":"nwasling0@mediafire.com","date":"Female"},
-        {"id":1,"to":"Nanci","amount":"Wasling","type":"nwasling0@mediafire.com","date":"Female"}];
-
-    const columns = [
-        {field: "id", headerName: t("ID")},
-        {field: "to", headerName:  t("To Account"), width: 160, minWidth: 150, maxWidth: 250},
-        {field: "amount", headerName: t("Amount"), width: 160, minWidth: 150, maxWidth: 250},
-        {field: "type", headerName: t("Payment Order"), width: 250, minWidth: 200, maxWidth: 300},
-        {field: "date", headerName: t("Date and Time"), width: 250, minWidth: 200, maxWidth: 300},
-        {field: "view", headerName: t("View"), renderCell: ({row: {id}}) => {
-                return (
-                    <Link to={ "/request/view/" + id }>
-                        <Button variant="outlined" sx={{ p: 1, pr: 2, mr: 1, color: colors.blueAccent[400] }}>
-                            <VisibilityOutlined sx={{ color: colors.orangeAccent[400], mr: 1 }} />
-                            { t("View") }
-                        </Button>
-                    </Link>
-                )
-            }
-        }
-        ];
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {setValue(newValue);};
 
     return (
         <Box m="20px" >
@@ -92,22 +103,52 @@ export default function RequestTabs() {
                     </Tabs>
                 </Box>
                 <TabPanel value={value} sx={{ p: 5 }} index={0}>
-                    <Box  m="0" height="50vh" sx={{
-                        "& .MuiDataGrid-columnHeaders": { backgroundColor: colors.blueAccent[500],
-                            minHeight: "35px !important",
-                            maxHeight: "45px !important"},
-                        "& .MuiButton-startIcon": { marginRight: "10px", marginLeft: "3px", color: colors.orangeAccent[400] },
-                        "& .MuiButton-text": {  color: colors.blueAccent[400] },
-                        "& .MuiDataGrid-columnSeparator": {  color: colors.blueAccent[500] },
-                        "& .MuiDataGrid-columnHeader": {  minHeight: "35px !important", maxHeight: "45px !important" },
-                        "& .MuiDataGrid-columnHeader:focus": {  outline: "none" },
-                        "& .MuiDataGrid-row": {  minHeight: "40px !important",
-                            maxHeight: "50px !important" },
-                        "& .MuiDataGrid-cell": {  borderBottomColor: colors.primary[750],
-                            minHeight: "40px !important",
-                            maxHeight: "50px !important" },
-                    }}>
-                        <DataGrid columns={columns} rows={rows} components={{ Toolbar: GridToolbar }} />
+                    <Box display="flex">
+                        <Grid
+                            container
+                            spacing={2}
+                            direction="row"
+                            justify="flex-start"
+                            alignItems="flex-start"
+                        >
+                            {requests.map(elem => (
+                                <Grid item xs={12} sm={6} md={3} key={requests.indexOf(elem)}>
+                                    <Card sx={{backgroundColor: colors.primary[800], p: 1}}>
+                                        <CardContent>
+                                            <Box sx={{ display: "flex", justifyContent: "flex-start"}}>
+                                                <Box sx={{ display: "flex-item",
+                                                    borderColor: colors.primary[500],
+                                                    borderStyle: "solid",
+                                                    borderWidth: "2px",
+                                                    width: "50px",
+                                                    height: "50px",
+                                                    pl: "5px",
+                                                    pt: "5px",
+                                                    mr: "20px",
+                                                    mt: "15px",
+                                                    borderRadius: "25px"}}>
+                                                    <img width="35px" src={noorLogo} alt="NoorBank"/>
+                                                </Box>
+                                                <Box>
+                                                    <Typography variant="h4" sx={{ mt: 1, mb: 2 }} gutterBottom>
+                                                        { t("To") } {elem.name}
+                                                    </Typography>
+                                                    <Typography variant="h5" sx={{ color: colors.orangeAccent[400] }}>
+                                                        { elem.type }
+                                                    </Typography>
+                                                </Box>
+                                            </Box>
+                                            <Typography sx={{ mt:2, color: colors.orangeAccent[500] }}>
+                                                { t("Price") }: {numberFormat(elem.price)} {t("Rls.")}
+                                            </Typography>
+                                            <Typography sx={{ mt:2, color: colors.orangeAccent[500] }}>
+                                                { t("Date and Time") }: {elem.date}
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </Grid>
+                            ))}
+                        </Grid>
                     </Box>
                 </TabPanel>
                 <TabPanel value={value} index={1}>

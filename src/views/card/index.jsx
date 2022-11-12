@@ -11,6 +11,7 @@ import Header from "../../components/Header";
 import {useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
+import {numberFormat} from "../../components/Functions";
 
 export default function MediaCard() {
 
@@ -38,19 +39,6 @@ export default function MediaCard() {
 
     }, []);
 
-    function addCommas(nStr)
-    {
-        nStr += '';
-        var x = nStr.split('.');
-        var x1 = x[0];
-        var x2 = x.length > 1 ? '.' + x[1] : '';
-        var rgx = /(\d+)(\d{3})/;
-        while (rgx.test(x1)) {
-            x1 = x1.replace(rgx, '$1,$2');
-        }
-        return x1 + x2;
-    }
-
     return (
         <Box m="20px">
             <Box display="flex" justifyContent="space-between" alignItems="center">
@@ -75,7 +63,7 @@ export default function MediaCard() {
                                         { t("Account Number") }: {elem.accountNumber.toString()}
                                     </Typography>
                                     <Typography sx={{ mt:2, color: colors.orangeAccent[500] }}>
-                                        { t("Balance") }: {addCommas(elem.amount)} {t("Rls.")}
+                                        { t("Balance") }: {numberFormat(elem.amount)} {t("Rls.")}
                                     </Typography>
                                 </CardContent>
                                 <CardActions sx={{ display: "flex", justifyContent: "space-between"}}>
