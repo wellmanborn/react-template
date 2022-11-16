@@ -9,6 +9,7 @@ import {SettingsOutlined} from "@mui/icons-material";
 import {PersonOutlined} from "@mui/icons-material";
 import {Search} from "@mui/icons-material";
 import {useTranslation} from "react-i18next";
+import {useNavigate} from "react-router-dom";
 
 const Topbar = () => {
 
@@ -16,6 +17,13 @@ const Topbar = () => {
     const colors = tokens(theme.palette.mode);
     const colorMode = useContext(ColorModeContext);
     const { t } = useTranslation();
+    const navigate = useNavigate();
+
+    const logout = () => {
+        localStorage.setItem("login", false);
+        localStorage.removeItem("toekn");
+        navigate("/login");
+    }
 
     return (<Box backgroundColor={colors.primary[800]} display="flex" justifyContent="space-between" p={1}>
         <Box display="flex"
@@ -42,7 +50,7 @@ const Topbar = () => {
             <IconButton>
                 <SettingsOutlined sx={{ color: colors.orangeAccent[500] }} />
             </IconButton>
-            <IconButton>
+            <IconButton onClick={logout}>
                 <PersonOutlined sx={{ color: colors.orangeAccent[500] }} />
             </IconButton>
         </Box>
