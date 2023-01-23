@@ -13,10 +13,13 @@ import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
 import {numberFormat} from "../../components/Functions";
 import axios from "axios";
+import ReactLoading from 'react-loading';
 
 export default function MediaCard() {
 
     const [data, setData] = useState([]);
+
+    const [showLoading, setShowLoading] = useState(true);
 
     const {t} = useTranslation();
 
@@ -24,19 +27,25 @@ export default function MediaCard() {
     const colors = tokens(theme.palette.mode);
 
     useEffect(() => {
-        const url = "http://mahta.local/api/accounts";
+        const url = "http://mahta.local/api/getAccounts";
 
         let token = localStorage.getItem("token")
 
         try {
-            axios.get(url, {
+            axios.post(url, {}, {
                 withCredentials: true,
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": "Bearer " + token
                 }
             }).then((response) => {
-                setData(response.data);
+                console.log( )
+                if(response.data.code === "0") {
+                    setData(response.data.result.accounts);
+                    setShowLoading(false);
+                }
+                //setData(response.data);
+
             }).catch((err) => {
                 console.log(err);
             });
@@ -47,9 +56,13 @@ export default function MediaCard() {
     }, []);
 
     return (
-        <Box m="20px">
+        <Box m="20px" sx={{ height: "calc(100% - 100px)" }}>
             <Box display="flex" justifyContent="space-between" alignItems="center">
                 <Header title="Accounts" subtitle="All Active Accounts"/>
+            </Box>
+            <Box sx={{ display: showLoading ? "flex" : "none", height: "calc(100% - 100px)",
+                justifyContent: "center", alignItems: "center" }}>
+                <ReactLoading type="bars" color={ colors.primary[400] } />
             </Box>
             <Box display="flex">
                 <Grid
@@ -64,24 +77,27 @@ export default function MediaCard() {
                             <Card sx={{backgroundColor: colors.primary[800], p: 1}}>
                                 <CardContent>
                                     <Typography variant="h4" sx={{mt: 1, mb: 2}} gutterBottom>
-                                        {elem.first_name + " " + elem.last_name}
+                                        {elem.accountTitle.toString()}
                                     </Typography>
                                     <Typography variant="h5" sx={{color: colors.orangeAccent[400]}}>
                                         {t("Account Number")}: {elem.accountNumber.toString()}
                                     </Typography>
-                                    <Typography sx={{mt: 2, color: colors.orangeAccent[500]}}>
-                                        {t("Balance")}: {numberFormat(elem.amount)} {t("Rls.")}
+                                    <Typography sx={{mt: 1, color: colors.orangeAccent[400]}}>
+                                        {elem.accountType.toString()}
+                                    </Typography>
+                                    <Typography sx={{mt: 1, color: colors.orangeAccent[400]}}>
+                                        {t("Balance")}: {numberFormat(parseInt(elem.accountBalance ? elem.accountBalance : 0))} {t("Rls.")}
                                     </Typography>
                                 </CardContent>
                                 <CardActions sx={{display: "flex", justifyContent: "space-between"}}>
-                                    <Link to={"/account/view/" + elem.id}>
+                                    <Link to={"/account/view/" + elem.accountNumber}>
                                         <Button variant="outlined" sx={{p: 1, pr: 2, color: colors.orangeAccent[400]}}>
                                             <AddOutlined sx={{color: colors.blueAccent[400], mr: 1}}/>
                                             {t("Payment Order")}
                                         </Button>
                                     </Link>
                                     <Box>
-                                        <Link to={"/request/view/" + elem.id}>
+                                        <Link to={"/request/view/" + elem.accountNumber}>
                                             <Button variant="outlined"
                                                     sx={{p: 1, pr: 2, mr: 1, color: colors.blueAccent[400]}}>
                                                 <VisibilityOutlined sx={{color: colors.orangeAccent[400], mr: 1}}/>

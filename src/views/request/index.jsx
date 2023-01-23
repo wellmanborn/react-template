@@ -112,12 +112,12 @@ export default function RequestTabs() {
                             alignItems="flex-start"
                         >
                             {requests.map(elem => (
-                                <Grid item xs={12} sm={6} md={3} key={requests.indexOf(elem)}>
-                                    <Card sx={{backgroundColor: colors.primary[800], p: 1}}>
+                                <Grid item xs={12} sm={6} md={4} key={requests.indexOf(elem)}>
+                                    <Card sx={{backgroundColor: colors.primary[900], p: 1}}>
                                         <CardContent>
                                             <Box sx={{ display: "flex", justifyContent: "flex-start"}}>
                                                 <Box sx={{ display: "flex-item",
-                                                    borderColor: colors.primary[500],
+                                                    borderColor: colors.primary[700],
                                                     borderStyle: "solid",
                                                     borderWidth: "2px",
                                                     width: "50px",

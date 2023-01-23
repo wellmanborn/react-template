@@ -14,7 +14,7 @@ import * as yup from "yup";
 import {useFormik} from "formik";
 import axios from "axios";
 import {useTranslation} from "react-i18next";
-import {useTheme} from "@mui/material";
+import {Grid, useTheme} from "@mui/material";
 import {tokens} from "../../theme";
 import {useNavigate} from "react-router-dom";
 import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
@@ -31,14 +31,19 @@ const initialValues = {
 
 function Copyright(props) {
     return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
+        <>
+            <Typography variant="body2" color="text.primary" align="center" sx={{ mt: 5 }}>
+                Version 1.0.11
+            </Typography>
+            <Typography variant="body2" color="text.secondary" align="center" sx={{ mt: 1}}>
+                {'Copyright © '}
+                <Link color="inherit" href="https://sepehrnetiranian.ir/">
+                    Sepehrnet Iranian
+                </Link>{' '}
+                {new Date().getFullYear()}
+                {'.'}
+            </Typography>
+        </>
     );
 }
 
@@ -51,10 +56,6 @@ export default function SignIn(){
     const colors = tokens(theme.palette.mode);
 
     const navigate = useNavigate()
-
-    useEffect(() => {
-        loadCaptchaEnginge(6, "red", "yellow", "special_characters");
-    }, [])
 
     const { handleSubmit, values, handleChange, touched, errors, handleBlur, setErrors } = useFormik({
         initialValues,
@@ -95,66 +96,65 @@ export default function SignIn(){
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
+                    backgroundColor: colors.primary[900],
+                    pt: 10,
+                    pl: 4,
+                    pb: 5,
+                    pr: 4,
+                    borderRadius: 2
                 }}
             >
                 <form onSubmit={handleSubmit} dir="rtl">
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                    {/*<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         { t("Sign in") }
-                    </Typography>
-                    <TextField
-                        fullWidth={true}
-                        variant="outlined"
-                        type="email"
-                        label={t("Email Address")}
-                        name="email"
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        value={values.email}
-                        size="small"
-                        error={!!touched.email && !!errors.email}
-                        helperText={touched.email && errors.email}
-                    />
-                    <LoadCanvasTemplate />
-                    <TextField
-                        fullWidth={true}
-                        variant="outlined"
-                        type="password"
-                        label={t("Password")}
-                        name="password"
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        value={values.password}
-                        size="small"
-                        error={!!touched.password && !!errors.password}
-                        helperText={touched.password && errors.password}
-                    />
-                    <FormControlLabel
+                    </Typography>*/}
+                    <Grid container sx={{ mb: 2 }} spacing={2}>
+                        <Grid item xs={12}>
+                            <TextField
+                                sx={{ mb: 3 }}
+                                fullWidth={true}
+                                variant="outlined"
+                                type="email"
+                                label={t("Email Address")}
+                                name="email"
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                value={values.email}
+                                size="small"
+                                error={!!touched.email && !!errors.email}
+                                helperText={touched.email && errors.email}
+                            />
+                            {/*<LoadCanvasTemplate />*/}
+                            <TextField
+                                fullWidth={true}
+                                variant="outlined"
+                                type="password"
+                                label={t("Password")}
+                                name="password"
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                value={values.password}
+                                size="small"
+                                error={!!touched.password && !!errors.password}
+                                helperText={touched.password && errors.password}
+                            />
+                            {/*<FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
                         label={ t("Remember me") }
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
-                    >
-                        { t("Sign in") }
-                    </Button>
-                    {/*<Grid container>
-                        <Grid item xs>
-                            <Link href="#" variant="body2">
-                                { t("Forgot Password?") }
-                            </Link>
+                    />*/}
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                sx={{ mt: 5, mb: 2 }}
+                            >
+                                { t("Sign in") }
+                            </Button>
                         </Grid>
-                        <Grid item>
-                            <Link href="#" variant="body2">
-                                { t("Don't have an account? Sign Up") }
-                            </Link>
-                        </Grid>
-                    </Grid>*/}
+                    </Grid>
                 </form>
             </Box>
             <Copyright sx={{ mt: 8, mb: 4 }} />

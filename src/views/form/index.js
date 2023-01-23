@@ -23,9 +23,9 @@ const validationSchema = yup.object().shape({
 
 const Item = styled(Paper)(({ theme }) => (
     {
-        backgroundColor: tokens(theme.palette.mode).primary[700],
+        backgroundColor: tokens(theme.palette.mode).primary[800],
         ...theme.typography.body2,
-        padding: theme.spacing(2)
+        padding: theme.spacing(4)
     }));
 
 const initialValues = {

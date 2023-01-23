@@ -28,5 +28,9 @@
   "Amount": "مبلغ",
   "Date and Time": "زمان و تاریخ",
   "Type": "نوع",
-  "To": "به"
+  "To": "به",
+  "Sign in": "ورود به برنامه",
+  "Email Address": "آدرس پست الکترونیک",
+  "Password": "رمز عبور",
+  "AccountType": "نوع حساب"
 }
